@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "./row.css";
+
+import { RowContainer, RowPosters, RowPoster } from "./row-style";
 
 import axios from "axios";
 import YouTube from "react-youtube";
@@ -41,28 +42,42 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
         .then((url) => {
           const urlParams = new URLSearchParams(new URL(url).search);
           setTrailerUrl(urlParams.get("v"));
-        }).catch((error) => console.log(error));
+        })
+        .catch((error) => console.log(error));
     }
   };
 
   return (
-    <div className="row">
+    <RowContainer>
       <h2>{title}</h2>
-      <div className="row__posters">
+      <RowPosters>
         {movies.map((movie) => (
-          <img
-            className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-            key={movie.id}
-            onClick={() => handleClick(movie)}
-            src={`${url_forImagesPath}${
-              isLargeRow ? movie.poster_path : movie.backdrop_path
-            }`}
-            alt={movie.name}
-          />
+          <>
+            {isLargeRow ? (
+              <RowPoster
+                style={{ maxHeight: "250px" }}
+                key={movie.id}
+                onClick={() => handleClick(movie)}
+                src={`${url_forImagesPath}${
+                  isLargeRow ? movie.poster_path : movie.backdrop_path
+                }`}
+                alt={movie.name}
+              />
+            ) : (
+              <RowPoster
+                key={movie.id}
+                onClick={() => handleClick(movie)}
+                src={`${url_forImagesPath}${
+                  isLargeRow ? movie.poster_path : movie.backdrop_path
+                }`}
+                alt={movie.name}
+              />
+            )}
+          </>
         ))}
-      </div>
+      </RowPosters>
       {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
-    </div>
+    </RowContainer>
   );
 };
 

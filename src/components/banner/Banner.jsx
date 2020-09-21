@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./banner.css";
+
+import {
+  BannerContainer,
+  BannerContents,
+  BannerTitle,
+  BannerButton,
+  BannerFadeButton,
+  BannerDescription,
+} from "./banner-style";
 
 const baseUrl = "https://api.themoviedb.org/3";
 
@@ -11,8 +19,9 @@ const Banner = ({ fetchUrl }) => {
     async function fetchData() {
       const request = await axios.get(`${baseUrl}${fetchUrl}`);
       setMovie(
-        request.data
-          .results[Math.floor(Math.random() * request.data.results.length - 1)],
+        request.data.results[
+          Math.floor(Math.random() * request.data.results.length - 1)
+        ]
       );
       return request;
     }
@@ -25,29 +34,26 @@ const Banner = ({ fetchUrl }) => {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
   return (
-    <header
+    <BannerContainer
       className="banner"
       style={{
         backgroundSize: "cover",
-        backgroundImage: `url('https://image.tmdb.org/t/p/original${movie
-          ?.backdrop_path}')`,
+        backgroundImage: `url('https://image.tmdb.org/t/p/original${movie?.backdrop_path}')`,
         backgroundPosition: "center center",
       }}
     >
-      <div className="banner__contents">
-        <h1 className="banner__title">
+      <BannerContents>
+        <BannerTitle>
           {movie?.title || movie?.name || movie?.original_name}
-        </h1>
+        </BannerTitle>
         <div className="banner__buttons">
-          <button className="banner__button">Play</button>
-          <button className="banner__button">My list</button>
+          <BannerButton>Play</BannerButton>
+          <BannerButton>My list</BannerButton>
         </div>
-        <h1 className="banner__description">
-          {truncate(movie?.overview, 150)}
-        </h1>
-      </div>
-      <div className="banner__fadeBottom"></div>
-    </header>
+        <BannerDescription>{truncate(movie?.overview, 150)}</BannerDescription>
+      </BannerContents>
+      <BannerFadeButton></BannerFadeButton>
+    </BannerContainer>
   );
 };
 

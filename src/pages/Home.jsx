@@ -1,13 +1,13 @@
 import React from "react";
-import Row from "../components/row/Row";
+import Row from "../components/row/Row.jsx";
 import requests from "../api-request/requests";
-import Banner from "../components/banner/Banner";
-import "./home.css";
-import Navbar from "../components/navbar/Navbar";
+import Banner from "../components/banner/Banner.jsx";
+import { HomeContainer } from "./home-style";
+import Navbar from "../components/navbar/Navbar.jsx";
 
 const Home = () => {
   return (
-    <div className="home">
+    <HomeContainer>
       <Navbar />
       <Banner fetchUrl={requests.fetchNetflixOriginals} />
       <Row
@@ -22,7 +22,7 @@ const Home = () => {
       <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} />
       <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} />
       <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries} />
-    </div>
+    </HomeContainer>
   );
 };
 

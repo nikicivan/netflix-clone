@@ -1,4 +1,6 @@
-.navbar {
+import styled from "styled-components";
+
+export const NavbarContainer = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
@@ -11,22 +13,18 @@
 
   transition-timing-function: ease-in;
   transition: all 0.5s;
-}
+`;
 
-.navbar__black {
-  background-color: #111;
-}
-
-.navbar__logo {
+export const NavbarLogo = styled.img`
   position: fixed;
   left: 2rem;
   width: 8rem;
   object-fit: contain;
-}
+`;
 
-.navbar__avatar {
+export const NavbarAvatar = styled.img`
   position: fixed;
   right: 2rem;
   width: 3rem;
   object-fit: contain;
-}
+`;
