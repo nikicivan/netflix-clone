@@ -1,6 +1,6 @@
 # Netflix clone
 
-using Firebase for hosting
+using React, styled-component and Firebase for hosting
 
 # DEMO
 
