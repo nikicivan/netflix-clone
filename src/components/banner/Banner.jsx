@@ -46,10 +46,10 @@ const Banner = ({ fetchUrl }) => {
         <BannerTitle>
           {movie?.title || movie?.name || movie?.original_name}
         </BannerTitle>
-        <div className="banner__buttons">
+        <>
           <BannerButton>Play</BannerButton>
           <BannerButton>My list</BannerButton>
-        </div>
+        </>
         <BannerDescription>{truncate(movie?.overview, 150)}</BannerDescription>
       </BannerContents>
       <BannerFadeButton></BannerFadeButton>

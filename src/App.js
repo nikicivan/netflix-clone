@@ -4,10 +4,10 @@ import { GlobalStyleApp } from "./app-styles";
 
 function App() {
   return (
-    <div>
+    <>
       <GlobalStyleApp />
       <Home />
-    </div>
+    </>
   );
 }
 
